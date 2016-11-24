@@ -1,0 +1,91 @@
+This is a demo application written by Integrated Computer Solutions featuring QML
+and C++ integration. This demo is an incomplete IVI system, but most of the major
+sub-systems are represented in some fashion. The QML files were generated from
+Photoshop. Those files are located in the Photoshop directory. Qt Labs provided
+the Photoshop to QML export plugin for Photoshop. This demo is offered to the
+public under the GNU GPL 3.0. Contact ICS if you would like another less
+restrictive license. See the LICENSE file for more information.
+
+Requirements:
+Qt 4.7.0+
+Qt Mobility 1.1+
+
+Building:
+qmake
+make
+
+This will build the demo without any hardware dependancy and will emulate the
+dashboard by looping through a text file. Check out the IcsIviUx.pro file for
+build options. Options can be added at qmake runtime like this:
+qmake "CONFIG+=megasquirt radioshark scc1 vegas"
+
+Running
+./IcsIviUx
+You probably want to run with -graphicssystem raster on X11
+
+Notes:
+This demo is locked to 1024x600. You could add a fitToViewport in main to get
+scaling, but it might be best to regenerate the Photoshop files and get new QML.
+This is harder than is sounds because the files origionally generated have been
+modified.
+
+Here is a run down of the
+major directories:
+
+/
+Contains the main shell application. Files in this directory simply use classes
+and files from the other major directories.
+
+/Components
+Contains generic widget likt things use by all the apps. Mcuh more should be in
+here, but for now we have a PushButton and a HorizontalSlider.
+
+/Radio
+Contains the qml for the Radio Application. Depends on the Radio Backend.
+
+/Radio/src
+Contains the Radio C++ Backend. This depends on having a Griffen RadioShark2
+device. This would not be a good in vehicle tuner. If I can get may hands on a
+HQCT I'd gladly use that. The RadioShark does not do Scan or RDS. The radio
+stations are hard coded for now. The idea was to use RDS to get the call sign
+and get an image from a web service. ICS could possibly host such a serivce.
+
+/Sirius
+Contains the qml for the Sirius Application. Depends on the Sirius Backend.
+
+/Sirius/src
+Contains the Sirius C++ Backend. Depends on having a SCC-1 and a TTL Serial to - 
+RS232 Serial converter. I used MichJS's box, but you could build one yourself.
+Codes were derived from google searches and MichJS's Sirous demo program in debug
+mode. I'm afraid of nasty grams from Sirius so the actual codes are redacted.
+
+/Mp3
+Contains the MP3 Player. This is a constant fight with Qt Mobility 1.1. It should use
+the Mobility audio player and Document Gallery stuff. Right now it's a quick demo of
+functionality.
+
+/Maps
+Contains the qml map application. Depends on Qt Mobility 1.1. This is by far the
+simplest application. There is no backend for routing, active GPS, etc written.
+It's just a QML Map Item wrapped in a Flickable with the location hard coded.
+
+/Dashboard
+Contains the QML for the gauges/sensors application.
+
+/Dashboard/src
+Conatins the C++ backened for the gauges/sensors application. The only backend
+that works is for the MegaSquirt-II ECM. The code there is tied to a memory dump
+of the MSExtra 2.1p firmware. It should load the megasquirt ini files to get the
+varous formats. There was a quick stab at an OBD-II impl based on the ELM 327
+chip, but I ran out of time. That code doesn't work at all. 
+
+/TaskBar
+QML list of applications. This subdir is special in that is depends on the number
+and names of the applications from other directories.
+
+ICS can be contacted via:
+sales@ics.com
+
+Justin Noel is the author and maintainer of this demo:
+justin@ics.com
+

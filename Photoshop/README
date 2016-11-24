@@ -1,0 +1,16 @@
+These are the Photoshop files used to generate the inital QML files. The
+process used was as follows:
+
+Requirement:
+  Install QML Export Plugin from Qt Labs
+  http://labs.qt.nokia.com/2010/10/19/exporting-qml-from-photoshop-and-gimp/
+  http://qt.gitorious.org/qt-labs/photoshop-qmlexporter
+
+1) Create Photoshop as usual with appropriate layering
+2) Re-order layers such the top most elements are on top
+3) Rasterize Vectors
+4) Merge some layers to shorten the generated QML (for clairty)
+5) Check that layer names conform to QML item naming conventions
+6) Export to QML using the Photoshop Plugin.
+7) Fixup QML to hide pressed look layers, etc
+
